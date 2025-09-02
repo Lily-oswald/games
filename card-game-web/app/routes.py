@@ -26,12 +26,14 @@ def start_game():
     
     # Store game state in session
     session['game_id'] = game_id
+    session['deck'] = game.deck  # Store the actual deck
     session['deck_remaining'] = len(game.deck)
     session['current_step'] = game.current_step
     session['cards'] = []
     session['game_over'] = False
     session['message'] = game.game_message
     session['score'] = 0
+    session['forbidden_suits'] = list(game.forbidden_suits) if hasattr(game, 'forbidden_suits') else []
     
     # Return the initial game state
     return jsonify({
@@ -56,23 +58,33 @@ def make_guess():
     
     # Recreate the game state from the session
     game = CardGame()
-    game.deck = load_deck()  # This would need to be modified to maintain the exact deck state
+    if 'deck' in session:
+        game.deck = session['deck']  # Use the stored deck
+    else:
+        game.deck = load_deck()  # Fallback if no deck in session
+    
     game.current_step = session['current_step']
     game.cards = session['cards']
-    game.game_over = session['game_over']
+    game.game_over = session['game_over'] 
     game.game_message = session['message']
     game.score = session['score']
+    game.forbidden_suits = set(session.get('forbidden_suits', []))
     
     # Process the guess
     result = game.make_guess(guess)
     
     # Update the session
+    session['deck'] = game.deck  # Store the actual deck
     session['deck_remaining'] = len(game.deck)
     session['current_step'] = game.current_step
     session['cards'] = game.cards
     session['game_over'] = game.game_over
     session['message'] = game.game_message
     session['score'] = game.score
+    session['forbidden_suits'] = list(game.forbidden_suits) if hasattr(game, 'forbidden_suits') else []
+    
+    # Include deck remaining in the response
+    result['deck_remaining'] = len(game.deck)
     
     return jsonify(result)
 

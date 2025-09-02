@@ -126,6 +126,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 addCardToDisplay(data.current_card);
             }
             
+            // Update deck count if available
+            if (data.deck_remaining !== undefined) {
+                deckCount.textContent = data.deck_remaining;
+            }
+            
             // Update the state
             if (data.game_over) {
                 endGame(data.success ? 'win' : 'lose', data.message);
