@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Card Game - Home{% endblock %}
+
+{% block content %}
+<div class="container">
+    <section class="intro">
+        <h2>Card Guessing Game</h2>
+        <p>Try to guess the color, rank, and suit of the cards drawn from the deck!</p>
+    </section>
+    
+    <section class="instructions">
+        <h3>How to Play:</h3>
+        <ol>
+            <li><strong>Red or Black:</strong> Guess if the next card will be red or black.</li>
+            <li><strong>Higher or Lower:</strong> Guess if the next card will be higher or lower than the first card.</li>
+            <li><strong>In Between or Outside:</strong> Guess if the third card's rank will be in between or outside the first two cards.</li>
+            <li><strong>Guess the Suit:</strong> Guess which suit the next card will be.</li>
+        </ol>
+        <p>Complete all 4 steps to win!</p>
+    </section>
+    
+    <section class="start">
+        <a href="{{ url_for('main.game') }}" class="btn btn-primary">Start Playing!</a>
+    </section>
+</div>
+{% endblock %}

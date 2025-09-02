@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Card Game - Play{% endblock %}
+
+{% block content %}
+<div class="container game-container">
+    <div id="game-area">
+        <div class="game-header">
+            <h2>Card Game</h2>
+            <div class="stats">
+                <span id="deck-count">52</span> cards remaining
+            </div>
+        </div>
+        
+        <div class="message-box">
+            <p id="game-message">Welcome to the Card Game! Click to start playing.</p>
+        </div>
+        
+        <div id="cards-display" class="cards-display">
+            <!-- Cards will be displayed here -->
+        </div>
+        
+        <div id="game-controls">
+            <button id="start-game" class="btn btn-primary">Start Game</button>
+            
+            <div id="guess-controls" style="display: none;">
+                <p id="question"></p>
+                <div id="options-buttons" class="options-buttons">
+                    <!-- Option buttons will be added here dynamically -->
+                </div>
+            </div>
+        </div>
+        
+        <div id="game-over-display" style="display: none;">
+            <h3 id="game-result"></h3>
+            <button id="play-again" class="btn">Play Again</button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Script will be loaded from game.js
+</script>
+{% endblock %}
