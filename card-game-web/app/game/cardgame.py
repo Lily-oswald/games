@@ -16,13 +16,15 @@ def load_deck(filename=None):
             deck.append({"rank": rank, "suit": suit, "color": color})
     return deck
 
-def draw_card(deck, forbidden_suits=None, color_choice=None):
-    """Draw a random card from the deck, avoiding forbidden suits and optional color filter."""
+def draw_card(deck, forbidden_suits=None, color_choice=None, forbidden_ranks=None):
+    """Draw a random card from the deck, avoiding forbidden suits, ranks, and optional color filter."""
     available = deck.copy()  # Create a copy to avoid modifying the original
     if color_choice:
         available = [card for card in available if card["color"].lower() == color_choice.lower()]
     if forbidden_suits:
         available = [card for card in available if card["suit"] not in forbidden_suits]
+    if forbidden_ranks:
+        available = [card for card in available if card["rank"] not in forbidden_ranks]
 
     if not available:
         return None
@@ -140,7 +142,8 @@ class CardGame:
                 self.game_over = True
                 
         elif step_type == "betweenoutside":
-            self.current_card = draw_card(self.deck, forbidden_suits=self.forbidden_suits)
+            forbidden_ranks = [self.cards[0]["rank"], self.cards[1]["rank"]]
+            self.current_card = draw_card(self.deck, forbidden_suits=self.forbidden_suits, forbidden_ranks=forbidden_ranks)
             self.cards.append(self.current_card)
             self.forbidden_suits.add(self.current_card["suit"])
             
