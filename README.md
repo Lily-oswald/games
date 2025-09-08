@@ -2,7 +2,7 @@
 The goal is to correctly guess card properties step by step until you win.
 A full standard 52-card deck is simulated, and cards are drawn randomly.
 
-🃏 How to Play
+How to Play
 The game progresses in four steps:
 
 Red or Black
@@ -21,5 +21,5 @@ If correct, move to the final step. If wrong, restart.
 
 Guess the Suit
 The player guesses the exact suit of the third card (Hearts, Diamonds, Clubs, Spades).
-If correct → 🎉 You Win! 🎉
+If correct → You Win!
 If wrong → restart.
