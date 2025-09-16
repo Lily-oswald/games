@@ -1,8 +1,23 @@
-# games
+# Games Collection
+
+This repository contains various simple games you can play in the terminal.
+
+## Available Games
+
+### Card Guessing Game (`cardgame.py`)
 The goal is to correctly guess card properties step by step until you win.
 A full standard 52-card deck is simulated, and cards are drawn randomly.
 
-How to Play
+### Pi Guessing Game (`pieceofpi.py`)
+Try to guess the digits of π one at a time. The game continues until you make a mistake.
+
+### Number Guessing Game (`number-guessing-game/`)
+A classic number guessing game where you try to guess a randomly generated number between 1 and 100.
+
+### Web Card Game (`card-game-web/`)
+A web-based version of the card guessing game built with Flask.
+
+## Card Guessing Game - How to Play
 The game progresses in four steps:
 
 Red or Black
